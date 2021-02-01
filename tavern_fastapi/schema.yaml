@@ -1,0 +1,16 @@
+---
+name: FastApi schemas
+desc: pykwalify schemas for 'fastapi' plugin block
+
+initialisation:
+  fastapi:
+    required: false
+    type: map
+    mapping:
+      app:
+        required: false
+        type: map
+        mapping:
+          location:
+            type: str
+            required: false

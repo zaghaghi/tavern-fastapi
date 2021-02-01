@@ -1,0 +1,16 @@
+---
+test_name: Make sure server has / endpoint
+
+fastapi:
+  app: 
+    location: "server:app"
+
+stages:
+  - name:  Make a request to /
+    request:
+      url: "/"
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
