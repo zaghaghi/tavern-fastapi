@@ -10,12 +10,14 @@ from tavern.util import exceptions
 
 class FastApiTestClient(TestClient):
     def __init__(self, **kwargs):
-        try:
-            app_location = kwargs["app"]["location"]
-        except KeyError as e:
-            msg = "Need to specify app location (in the form my.module:application)"
-            raise_from(exceptions.MissingKeysError(msg), e)
-            return
+        app_location = os.getenv("FASTAPI_APP_LOCATION", False)
+        if not app_location:
+            try:
+                app_location = kwargs["app"]["location"]
+            except KeyError as e:
+                msg = "Need to specify app location (in the form my.module:application)"
+                raise_from(exceptions.MissingKeysError(msg), e)
+                return
         fastapi_app = import_ext_function(app_location)
         TestClient.__init__(self, fastapi_app)
 
