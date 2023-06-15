@@ -11,14 +11,15 @@ classifiers_list = [
 
 setup(
     name="tavern_fastapi",
-    version="0.0.1",
+    version="0.0.2",
     author="Hamed Zaghaghi",
     author_email="hamed.zaghaghi@gmail.com",
-    description="tavern http backend for fastapi",
+    description="Tavern http backend for FastAPI TestClient",
     packages=[
         "tavern_fastapi",
     ],
     classifiers=classifiers_list,
     requires=["fastapi", "pytest", "tavern", "future"],
-    data_files=[("schemas", ["tavern_fastapi/schema.yaml"])]
+    include_package_data=True,
+    package_data={"tavern_fastapi": ["schema.yaml"]},
 )
